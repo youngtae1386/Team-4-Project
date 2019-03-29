@@ -1,3 +1,51 @@
-.list-group-item {
-  line-height: 2.5;
+.btn {
+  background-color: #9d0202;
+}
+
+body {
+  background: url(../images/d9maJ5.jpg) fixed center no-repeat;
+  background-size: cover;
+ }
+
+h1 {
+  text-align: center;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: xx-large;
+  text-shadow: 2px 4px 8px black;
+  margin-top: 10px;
+  color: white;
+}
+
+img {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  text-shadow: 2px 4px 8px black;
+  margin-top: 275px;
+  color: white;
+}
+
+
+iframe {
+  width: 30%;
+  height: auto;
+}
+
+
+
+.footer {
+  border-top: 10px solid #3a5998;
+}
+
+.footer {
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  background: #f6f6f6;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 175px;
 }
