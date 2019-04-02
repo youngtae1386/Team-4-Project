@@ -3,6 +3,7 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var $newQR = $("#outputData");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -65,21 +66,22 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    text: $newQR.text().trim()
   };
 
-  if (!(example.text && example.description)) {
+  if (!example.text) {
     alert("You must enter an example text and description!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
+  alert(example.text);
+  //API.saveExample(example).then(function() {
+  //refreshExamples();
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  //});
+
+  //$exampleText.val("");
+  //$exampleDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
