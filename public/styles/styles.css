@@ -20,25 +20,25 @@ color: #fff;
 
 h1 {
   font-family: 'Fredericka the Great', cursive;
-  font-size: 50px;
+  font-size: 60px;
   color: #3a5998;
   margin-top: 0px;
+  text-shadow: 2px 3px 5px grey;
+  letter-spacing: 3px;
 }
 
 h3 {
   font-family: 'Quicksand', sans-serif;
   font-size: 20px;
+  font-weight: bolder;
   color: #3a5998;
   margin-top: 0px;
 }
-
-
 
 h2,
 h4,
 h5,
 h6,
-
 
 p {
   margin-top: 0px;
@@ -82,9 +82,11 @@ a:focus {
   line-height: 160px;
   text-align: center;
 }
+
 img {
   vertical-align: middle;
-  width: 80%;
+  max-width: 110%;
+  margin-top: -60px;
 }
 
 .left-content {
@@ -98,9 +100,9 @@ img {
 }
 
 .left-content ul li.active {
+  border-top: 1px solid #f6f6f6;
   background-color: #3a5998;
 }
-
 
 .left-content ul li.active a span {
   border-color: #f6f6f6;
@@ -126,12 +128,14 @@ img {
   text-align: center;
   width: 50px;
 }
+
 .left-content ul .ghost {
 display:none;
 }
 
 .copyright {
   font-family: 'Quicksand', sans-serif;
+  border-top: 1px solid #f6f6f6;
   background-color: #3a5998;
   bottom: 0;
   color: #ffffff;
@@ -147,7 +151,7 @@ display:none;
 }
 
 .copyright p a {
-  color: #212121;
+  color: #8b9dc3;
   font-weight: 700;
 }
 
@@ -171,12 +175,8 @@ display:none;
   display: block;
 }
 
-
-
-.content {}
-
 .content a {
-  color: #00c292;
+  color: #3a5998;
 }
 
 .content h1 {
@@ -203,25 +203,33 @@ display:none;
 .logo h1 {
 padding: 65px 0;
 }
+
 #loadingMessage {
   text-align: center;
   padding: 40px;
   background-color: #eee;
 }
+
 #canvas {
   width: 30%;
   height: 30%;
+  border-style: groove;
+  border-width: 10px;
+  border-color: #dfe3ee;
 }
+
 #output {
   font-family: 'Quicksand', sans-serif;
   margin-top: 20px;
   padding: 10px;
   padding-bottom: 0;
 }
+
 #output div {
   padding-bottom: 10px;
   word-wrap: break-word;
 }
+
 #noQRFound {
   text-align: center;
 }
@@ -229,6 +237,7 @@ padding: 65px 0;
 th {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bolder;
+  color: #e75c2d
 }
 
 tr {
@@ -247,4 +256,25 @@ tr {
   background-color: #f3ad96;
   border-color: #f3ad96;
   color: black;
+}
+
+table {
+  background-color: white;
+  box-shadow: 0px 0px 5px grey;
+}
+
+.letters {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 115px;
+  font-weight: bolder;
+  color: #3a5998;
+  padding: 3px;
+  line-height: 0.54;
+  letter-spacing: -20px;
+  height: auto;
+}
+
+.letters {
+  mix-blend-mode: overlay;
+  opacity: 0.5;
 }
