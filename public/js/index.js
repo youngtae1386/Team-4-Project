@@ -2,7 +2,7 @@
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $exampleList = $("#exampletest");
 var $newQR = $("#outputData");
 
 // The API object contains methods for each kind of request we'll make
@@ -28,8 +28,15 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+  searchProduct: function(id) {
+    return $.ajax({
+      url: "api/product/" + id,
+      type: "GET"
+    });
   }
 };
+
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
@@ -60,6 +67,19 @@ var refreshExamples = function() {
   });
 };
 
+var search = function() {
+  var barCodeText = {
+    text: $newQR.text().trim()
+  };
+
+  API.searchProduct(barCodeText.text).then(function(data) {
+    console.log(data);
+    $('.table').bootstrapTable({
+      data: data
+    });
+  });
+};
+
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -69,14 +89,14 @@ var handleFormSubmit = function(event) {
     text: $newQR.text().trim()
   };
 
-  if (!example.text) {
-    alert("You must enter an example text and description!");
-    return;
-  }
+  // if (!example.text) {
+  //   alert("You must enter an example text and description!");
+  //   return;
+  // }
 
-  alert(example.text);
+ //  alert(example.text);
   //API.saveExample(example).then(function() {
-  //refreshExamples();
+  refreshExamples();
 
   //});
 
