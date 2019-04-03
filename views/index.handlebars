@@ -1,184 +1,120 @@
-<div class="wrapper">
-		<div class="left-side">
-			<div class="logo">
-				<img src="img/logo.png" alt="" />
-			</div>
-			<div class="left-content">
-				<ul role="tablist">
-					<li role="presentation" class="active"><a href="#one" aria-controls="home" role="tab"
-							data-toggle="tab"><span><i class="fa fa-home"></i></span>Home</a></li>
-					<li role="presentation" class="ghost"><a href="#result" aria-controls="home" role="tab"
-							data-toggle="tab"><span><i class="fa fa-info"></i></span>Result</a></li>
-				</ul>
-			</div>
-			<div class="copyright">
-				<p>Project 2 Group 4 </p>
-			</div>
+<div id="one" class="content active fade in">
+	<h1><span>HOMEPAGE</span></h1>
+	<div class="created">
+		<h3>Item Searcher</h3>
+		<div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam
+			enabled)</div>
+		<canvas id="canvas" hidden></canvas>
+		<div id="output" hidden>
+			<div id="outputMessage">No QR code detected.</div>
+			<div hidden><b>Data:</b> <span id="outputData"></span></div>
 		</div>
-		<div class="right-side">
-			<div class="right-content text-center">
-				<div id="one" class="content active fade in">
-					<h1><span>HOMEPAGE</span></h1>
-					<div class="created">
-						<h3>Item Searcher</h3>
-						<div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam
-							enabled)</div>
-						<canvas id="canvas" hidden></canvas>
-						<div id="output" hidden>
-							<div id="outputMessage">No QR code detected.</div>
-							<div hidden><b>Data:</b> <span id="outputData"></span></div>
-						</div>
-						<br>
-						<div class="form-group">
-							<input type="text" id="example-text" class="form-control" aria-describedby="example-text"
-								placeholder="SEARCH BY ITEM ID">
-						</div>
-						<button id="submit" class="btn btn-primary float-right">Submit</button>
-					</div>
-					<br>
-					<h3>Default Dashboard</h3>
-					<br>
-					<table class="table text-left">
-						<thead>
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">NAME</th>
-								<th scope="col">INVENTORY</th>
-								<th scope="col">PRICE</th>
-								<th scope="col">LOCATION</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>111</td>
-								<td>TEST</td>
-								<td>TEST</td>
-								<td>TEST</td>
-								<td>TEST</td>
-							</tr>
-							<tr>
-								<td>112</td>
-								<td>TEST</td>
-								<td>TEST</td>
-								<td>TEST</td>
-								<td>TEST</td>
-							</tr>
-							<tr>
-								<td>113</td>
-								<td>TEST</td>
-								<td>TEST</td>
-								<td>TEST</td>
-								<td>TEST</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div id="result" class="content fade">
-					<h1>SEARCH RESULT</h1>
-					<table class="table text-left">
-							<thead>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">NAME</th>
-									<th scope="col">INVENTORY</th>
-									<th scope="col">PRICE</th>
-									<th scope="col">LOCATION</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>111</td>
-									<td>TEST</td>
-									<td>TEST</td>
-									<td>TEST</td>
-									<td>TEST</td>
-								</tr>
-								<tr>
-									<td>112</td>
-									<td>TEST</td>
-									<td>TEST</td>
-									<td>TEST</td>
-									<td>TEST</td>
-								</tr>
-								<tr>
-									<td>113</td>
-									<td>TEST</td>
-									<td>TEST</td>
-									<td>TEST</td>
-									<td>TEST</td>
-								</tr>
-							</tbody>
-						</table>
-
-				</div>
-			</div>
+		<br>
+		<div class="form-group">
+			<input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+				placeholder="SEARCH BY ITEM ID">
 		</div>
+		<button id="submit" class="btn btn-primary float-right">Submit</button>
 	</div>
-	</div>
+	<br>
+	<h3>Default Dashboard</h3>
+	<br>
+	<table class="table text-left">
+		<thead>
+			<th data-field="prod_id">Product Id</th>
+			<th data-field="cat_id">Category Id</th>
+			<th data-field="location">Locatino</th>
+			<th data-field="price">Item Price</th>
+		</thead>
+	</table>
+</div>
+{{!-- <div id="result" class="content fade">
+	<h1>SEARCH RESULT</h1>
+	<table class="table text-left">
+			<thead>
+			 <thead>
+              {{#each uniqueKeys}}
+                <th>{{this}}</th>
+                {{/each}}
+            </thead>
+			</thead>
+			<tbody>
+			 {{#each data}}
+              <tr>
+                {{#each ../uniqueKeys }}
+                  <td>{{lookup .. this}}</td>
+                {{/each}}
+              </tr>
+              {{/each}}
+			</tbody>
+		</table>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</div> --}}
+
+{{!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
-<script src="/js/jsQR.js"></script>
+<script src="/js/jsQR.js"></script> --}}
 <script>
-$(function () {
-	$('#myTab a:first').tab('show');
-});
+	$(function () {
+		$('#myTab a:first').tab('show');
+	});
 
-//Next and prev buttons
-$('#submit').click(function(){
-	var nextListItem = $('.left-content ul > .active').next('li');
-	nextListItem.removeClass('ghost');
-	nextListItem.find('a').trigger('click');
-});
+	//Next and prev buttons
+	$('#submit').click(function () {
+		var nextListItem = $('.left-content ul > .active').next('li');
+		nextListItem.removeClass('ghost');
+		nextListItem.find('a').trigger('click');
+	});
 
-  var video = document.createElement("video");
-  var canvasElement = document.getElementById("canvas");
-  var canvas = canvasElement.getContext("2d");
-  var loadingMessage = document.getElementById("loadingMessage");
-  var outputContainer = document.getElementById("output");
-  var outputMessage = document.getElementById("outputMessage");
-  var outputData = document.getElementById("outputData");
-  function drawLine(begin, end, color) {
-    canvas.beginPath();
-    canvas.moveTo(begin.x, begin.y);
-    canvas.lineTo(end.x, end.y);
-    canvas.lineWidth = 4;
-    canvas.strokeStyle = color;
-    canvas.stroke();
-  }
-  // Use facingMode: environment to attemt to get the front camera on phones
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
-    video.srcObject = stream;
-    video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-    video.play();
-    requestAnimationFrame(tick);
-  });
-  function tick() {
-    loadingMessage.innerText = "⌛ Loading video..."
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-      loadingMessage.hidden = true;
-      canvasElement.hidden = false;
-      outputContainer.hidden = false;
-      canvasElement.height = video.videoHeight;
-      canvasElement.width = video.videoWidth;
-      canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-      var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-      var code = jsQR(imageData.data, imageData.width, imageData.height, {
-        inversionAttempts: "dontInvert",
-      });
-      if (code) {
-        drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
-        drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
-        drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
-        drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-        outputMessage.hidden = true;
-        outputData.parentElement.hidden = false;
-        outputData.innerText = code.data;
-      } else {
-        //outputMessage.hidden = false;
-        //outputData.parentElement.hidden = true;
-      }
-    }
-    requestAnimationFrame(tick);
-  }
+	var video = document.createElement("video");
+	var canvasElement = document.getElementById("canvas");
+	var canvas = canvasElement.getContext("2d");
+	var loadingMessage = document.getElementById("loadingMessage");
+	var outputContainer = document.getElementById("output");
+	var outputMessage = document.getElementById("outputMessage");
+	var outputData = document.getElementById("outputData");
+	function drawLine(begin, end, color) {
+		canvas.beginPath();
+		canvas.moveTo(begin.x, begin.y);
+		canvas.lineTo(end.x, end.y);
+		canvas.lineWidth = 4;
+		canvas.strokeStyle = color;
+		canvas.stroke();
+	}
+	// Use facingMode: environment to attemt to get the front camera on phones
+	navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
+		video.srcObject = stream;
+		video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+		video.play();
+		requestAnimationFrame(tick);
+	});
+	function tick() {
+		loadingMessage.innerText = "⌛ Loading video..."
+		if (video.readyState === video.HAVE_ENOUGH_DATA) {
+			loadingMessage.hidden = true;
+			canvasElement.hidden = false;
+			outputContainer.hidden = false;
+			canvasElement.height = video.videoHeight;
+			canvasElement.width = video.videoWidth;
+			canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+			var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+			var code = jsQR(imageData.data, imageData.width, imageData.height, {
+				inversionAttempts: "dontInvert",
+			});
+			if (code) {
+				drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+				drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+				drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+				drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+				outputMessage.hidden = true;
+				outputData.parentElement.hidden = false;
+				outputData.innerText = code.data;
+				search();
+			} else {
+				//outputMessage.hidden = false;
+				//outputData.parentElement.hidden = true;
+			}
+		}
+		requestAnimationFrame(tick);
+	}
 </script>
