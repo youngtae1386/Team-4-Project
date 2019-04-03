@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable camelcase */
 var db = require("../models");
 
 module.exports = function(app) {
-
   app.get("/api/product/:id", function(req, res) {
     db.product.findAll({where:{prod_id:req.params.id}}).then(function(products) {
       res.json(products);
@@ -29,6 +30,4 @@ module.exports = function(app) {
   //     res.json(dbExample);
   //   });
   // });
-
- 
 };
