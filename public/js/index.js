@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
@@ -37,7 +38,6 @@ var API = {
   }
 };
 
-
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
   API.getExamples().then(function(data) {
@@ -74,7 +74,7 @@ var search = function() {
 
   API.searchProduct(barCodeText.text).then(function(data) {
     console.log(data);
-    $('.table').bootstrapTable({
+    $(".table").bootstrapTable({
       data: data
     });
   });
@@ -94,7 +94,7 @@ var handleFormSubmit = function(event) {
   //   return;
   // }
 
- //  alert(example.text);
+  //  alert(example.text);
   //API.saveExample(example).then(function() {
   refreshExamples();
 
