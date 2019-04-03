@@ -2,27 +2,28 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Load index page
-  app.get("/", function(req, res) {
-    db.Example.findAll({raw: true}).then(function(dbExamples) {
-      var uniqueKeys = dbExamples.reduce(function(acc, obj){
-        return acc.concat(Object.keys(obj).filter(key=>acc.indexOf(key) === -1));
-      },[]);
-      res.render("index", {
-        msg: "Welcome!",
-        uniqueKeys: uniqueKeys,
-        data: dbExamples
-      });
-    });
-  });
+  // app.get("/", function(req, res) {
+  //   db.Example.findAll({raw: true}).then(function(dbExamples) {
+  //     var uniqueKeys = dbExamples.reduce(function(acc, obj){
+  //       return acc.concat(Object.keys(obj).filter(key=>acc.indexOf(key) === -1));
+  //     },[]);
+  //     res.render("index", {
+  //       msg: "Welcome!",
+  //       uniqueKeys: uniqueKeys,
+  //       data: dbExamples
+  //     });
+  //   });
+
+  // });
 
   app.get("/", function(req, res) {
-    db.Example.findAll({raw: true}).then(function(dbExamples) {
-      var uniqueKeys = dbExamples.reduce(function(acc, obj){
-        return acc.concat(Object.keys(obj).filter(key=>acc.indexOf(key) === -1));
-      },[]);
+    db.Example.findAll({ raw: true }).then(function(dbExamples) {
+      // var uniqueKeys = dbExamples.reduce(function(acc, obj){
+      //   return acc.concat(Object.keys(obj).filter(key => acc.indexOf(key) === -1));
+      // },[]);
       res.render("index", {
         msg: "Welcome!",
-        uniqueKeys: uniqueKeys,
+        // uniqueKeys: uniqueKeys,
         data: dbExamples
       });
     });
