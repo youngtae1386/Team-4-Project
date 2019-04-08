@@ -1,40 +1,124 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown Items
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Item 1</a>
-                    <a class="dropdown-item" href="#">Item 2</a>
-                    <a class="dropdown-item" href="#">Item 3</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+<div id="one" class="content active fade in">
+	<h1><span>HOMEPAGE</span></h1>
+	<div class="created">
+		<h3>Item Searcher</h3>
+		<div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam
+			enabled)</div>
+		<canvas id="canvas" hidden></canvas>
+		<div id="output" hidden>
+			<div id="outputMessage">No QR code detected.</div>
+			<div hidden><b>Data:</b> <span id="outputData"></span></div>
+		</div>
+		<br>
+		<div class="form-group">
+			<input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+				placeholder="SEARCH BY ITEM ID">
+		</div>
+		<button id="submit" class="btn btn-primary float-right">Submit</button>
+	</div>
+	<br>
+	<h3>Default Dashboard</h3>
+	<br>
+	<table class="table text-left">
+		<thead>
+			<th data-field="prod_id">Product Id</th>
+			<th data-field="cat_id">Category Id</th>
+			<th data-field="location">Locatino</th>
+			<th data-field="price">Item Price</th>
+		</thead>
+	</table>
 </div>
+{{!-- <div id="result" class="content fade">
+	<h1>SEARCH RESULT</h1>
+	<table class="table text-left">
+			<thead>
+			 <thead>
+              {{#each uniqueKeys}}
+                <th>{{this}}</th>
+                {{/each}}
+            </thead>
+			</thead>
+			<tbody>
+			 {{#each data}}
+              <tr>
+                {{#each ../uniqueKeys }}
+                  <td>{{lookup .. this}}</td>
+                {{/each}}
+              </tr>
+              {{/each}}
+			</tbody>
+		</table>
 
+</div> --}}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="display-4">QR CODE APPLICATION</h1>
-                <p class="lead">Scan the QR code to find your item.</p>
-            </div>
-        </div>
-    </div>
+{{!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script> --}}
 
- <footer>
-        <div class="footer">
-            <h4>DATA TABLE</h4>
-        </div>
-    </footer>
+<script src="/js/jsQR.js"></script>
+<script>
+	$(function () {
+		$('#myTab a:first').tab('show');
+	});
 
+	//Next and prev buttons
+	$('#submit').click(function () {
+		var nextListItem = $('.left-content ul > .active').next('li');
+		nextListItem.removeClass('ghost');
+		nextListItem.find('a').trigger('click');
+	});
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+	var video = document.createElement("video");
+	var canvasElement = document.getElementById("canvas");
+	var canvas = canvasElement.getContext("2d");
+	var loadingMessage = document.getElementById("loadingMessage");
+	var outputContainer = document.getElementById("output");
+	var outputMessage = document.getElementById("outputMessage");
+	var outputData = document.getElementById("outputData");
+	function drawLine(begin, end, color) {
+		canvas.beginPath();
+		canvas.moveTo(begin.x, begin.y);
+		canvas.lineTo(end.x, end.y);
+		canvas.lineWidth = 4;
+		canvas.strokeStyle = color;
+		canvas.stroke();
+	}
+	// Use facingMode: environment to attemt to get the front camera on phones
+	navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
+		video.srcObject = stream;
+		video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+		video.play();
+		requestAnimationFrame(tick);
+	});
+	function tick() {
+		loadingMessage.innerText = "⌛ Loading video..."
+		if (video.readyState === video.HAVE_ENOUGH_DATA) {
+			loadingMessage.hidden = true;
+			canvasElement.hidden = false;
+			outputContainer.hidden = false;
+			canvasElement.height = video.videoHeight;
+			canvasElement.width = video.videoWidth;
+			canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+			var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+			var code = jsQR(imageData.data, imageData.width, imageData.height, {
+				inversionAttempts: "dontInvert",
+			});
+			if (code) {
+				drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+				drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+				drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+				drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+				outputMessage.hidden = true;
+				outputData.parentElement.hidden = false;
+				outputData.innerText = code.data;
+				search();
+			} else {
+				//outputMessage.hidden = false;
+				//outputData.parentElement.hidden = true;
+			}
+		}
+		requestAnimationFrame(tick);
+	}
+</script>
+

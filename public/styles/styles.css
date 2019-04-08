@@ -1,3 +1,4 @@
+
 .btn {
   background-color: #9d0202;
 }
@@ -48,4 +49,283 @@ iframe {
   width: 100%;
   bottom: 0;
   height: 175px;
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+/*
+*::-moz-selection {
+background-attachment: scroll;
+background-clip: border-box;
+background-color: #ef4836;
+background-image: none;
+background-origin: padding-box;
+background-position: 0 0;
+background-repeat: repeat;
+background-size: auto auto;
+color: #fff;
+}
+*/
+
+h1 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 60px;
+  color: #3a5998;
+  margin-top: 0px;
+  text-shadow: 2px 3px 5px grey;
+  letter-spacing: 3px;
+}
+
+h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #3a5998;
+  margin-top: 0px;
+}
+
+h2,
+h4,
+h5,
+h6,
+
+p {
+  margin-top: 0px;
+}
+
+body,
+html {
+  height: 100%;
+  background-color: #f6f6f6;
+}
+
+a:hover,
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.body {
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.left-side {
+  /* background: url(../img/d9maJ5.jpg) fixed center no-repeat; */
+  background-color:#dfe3ee;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 300px;
+}
+
+.logo {
+  background-color:#dfe3ee;
+  height: 174px;
+  line-height: 160px;
+  text-align: center;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 110%;
+  margin-top: -60px;
+}
+
+.left-content {
+  text-align: right;
+}
+
+.left-content ul li {
+  border-bottom: 1px solid #f6f6f6;
+  display: block;
+  height: 50px;
+}
+
+.left-content ul li.active {
+  border-top: 1px solid #f6f6f6;
+  background-color: #3a5998;
+}
+
+.left-content ul li.active a span {
+  border-color: #f6f6f6;
+}
+
+.left-content ul li a {
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  line-height: 50px;
+  padding-right: 30px;
+  display: block;
+  text-decoration: none;
+}
+
+.left-content ul li a span {
+  border-right: 1px solid #f6f6f6;
+  color: #e75c2d;
+  display: inline-block;
+  float: left;
+  font-size: 20px;
+  height: 49px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+}
+
+.left-content ul .ghost {
+display:none;
+}
+
+.copyright {
+  font-family: 'Quicksand', sans-serif;
+  border-top: 1px solid #f6f6f6;
+  background-color: #3a5998;
+  bottom: 0;
+  color: #ffffff;
+  left: 0;
+  padding: 20px;
+  position: absolute;
+  text-align: right;
+  width: 100%;
+}
+
+.copyright p {
+  margin-bottom: 0px;
+}
+
+.copyright p a {
+  color: #8b9dc3;
+  font-weight: 700;
+}
+
+.copyright p span {
+  display: block;
+}
+
+.right-side {
+  padding-left: 300px;
+}
+
+.right-content {
+  padding: 50px;
+}
+
+.content {
+  display: none;
+}
+
+.content.active {
+  display: block;
+}
+
+.content a {
+  color: #3a5998;
+}
+
+.content h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 20px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid #ddd;
+  color: #3a5998;
+}
+
+#one span {
+  color: #3a5998;
+}
+
+.content#source > ul li span {
+  font-weight: 700;
+  display: block;
+}
+
+.content#source > ul li > ul {
+  padding-left: 25px;
+}
+.logo h1 {
+padding: 65px 0;
+}
+
+#loadingMessage {
+  text-align: center;
+  padding: 40px;
+  background-color: #eee;
+}
+
+#canvas {
+  width: 30%;
+  height: 30%;
+  border-style: groove;
+  border-width: 10px;
+  border-color: #dfe3ee;
+}
+
+#output {
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 20px;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+#output div {
+  padding-bottom: 10px;
+  word-wrap: break-word;
+}
+
+#noQRFound {
+  text-align: center;
+}
+
+th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  color: #e75c2d
+}
+
+tr {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+.btn {
+  font-family:'Quicksand', sans-serif;
+  background-color: #e75c2d;
+  border-color: #f3ad96;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #f3ad96;
+  border-color: #f3ad96;
+  color: black;
+}
+
+table {
+  background-color: white;
+  box-shadow: 0px 0px 5px grey;
+}
+
+.letters {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 115px;
+  font-weight: bolder;
+  color: #3a5998;
+  padding: 3px;
+  line-height: 0.54;
+  letter-spacing: -20px;
+  height: auto;
+}
+
+.letters {
+  mix-blend-mode: overlay;
+  opacity: 0.5;
 }

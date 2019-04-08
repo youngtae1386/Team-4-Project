@@ -7,13 +7,14 @@
     "extends": "prettier",
     "plugins": [
         "prettier"
-      ],
+    ],
     "rules": {
-        "no-duplicate-case":"error",
-        "no-empty":"error",
-        "no-extra-semi":"error",
+        "parser": "babel-eslint",
+        "no-duplicate-case": "error",
+        "no-empty": "error",
+        "no-extra-semi": "error",
         "no-func-assign": "error",
-        "no-irregular-whitespace":"error",
+        "no-irregular-whitespace": "error",
         "no-unreachable": "error",
         "curly": "error",
         "dot-notation": "error",
@@ -22,6 +23,7 @@
         "no-multi-spaces": "error",
         "no-unused-vars": "error",
         "camelcase": "error",
+        "prefer-arrow-callback":"off",
         "indent": [
             "error",
             2
@@ -30,6 +32,16 @@
             "error",
             "double"
         ],
+
+        "ecmaFeatures": {
+            "modules": true,
+            "arrowFunctions": true,
+            "classes": true
+        },
+        "env": {
+            "es6": true
+        },
+
         "semi": [
             "error",
             "always"

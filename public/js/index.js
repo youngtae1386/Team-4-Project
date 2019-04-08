@@ -1,17 +1,43 @@
-var lat = 18.35827827454; //default latitude
-var lng = 121.63744354248; //default longitude
-var homeLatlng = new google.maps.LatLng(lat, lng); //set default coordinates
 
-var homeMarker = new google.maps.Marker({ //set marker
-  position: homeLatlng, //set marker position equal to the default coordinates
-  map: map, //set map to be used by the marker
-  draggable: true //make the marker draggable
-});
+/* eslint-disable no-unused-vars */
+// Get references to page elements
+var $exampleText = $("#example-text");
+var $exampleDescription = $("#example-description");
+var $submitBtn = $("#submit");
+var $exampleList = $("#exampletest");
+var $newQR = $("#outputData");
 
-var myOptions = {
-  center: new google.maps.LatLng(16.61096000671, 120.31346130371), //set map center
-  zoom: 17, //set zoom level to 17
-  mapTypeId: google.maps.MapTypeId.ROADMAP //set map type to road map
+// The API object contains methods for each kind of request we'll make
+var API = {
+  saveExample: function(example) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/examples",
+      data: JSON.stringify(example)
+    });
+  },
+  getExamples: function() {
+    return $.ajax({
+      url: "api/examples",
+      type: "GET"
+    });
+  },
+  deleteExample: function(id) {
+    return $.ajax({
+      url: "api/examples/" + id,
+      type: "DELETE"
+    });
+  },
+  searchProduct: function(id) {
+    return $.ajax({
+      url: "api/product/" + id,
+      type: "GET"
+    });
+  }
+
 };
 var map = new google.maps.Map($("#map_canvas"),
     myOptions); //initialize the map
@@ -72,32 +98,44 @@ $('#search_ex_places').blur(function(){//once the user has selected an existing 
     }
   });
 
-  //if the place doesn't exist then empty all the text fields and hidden fields
-  if(exists == 0){
-    $('input[type=text], input[type=hidden]').val('');
 
-  }else{
-    //set the coordinates of the selected place
-    var position = new google.maps.LatLng(lat, lng);
+var search = function() {
+  var barCodeText = {
+    text: $newQR.text().trim()
+  };
 
-    //set marker position
-    homeMarker.setMap(map);
-    homeMarker.setPosition(position);
+  API.searchProduct(barCodeText.text).then(function(data) {
+    console.log(data);
+    $(".table").bootstrapTable({
+      data: data
+    });
+  });
+};
 
-    //set the center of the map
-    map.setCenter(homeMarker.getPosition());
-    map.setZoom(17);
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var handleFormSubmit = function(event) {
+  event.preventDefault();
 
-  }
-});
+  var example = {
+    text: $newQR.text().trim()
+  };
 
+  // if (!example.text) {
+  //   alert("You must enter an example text and description!");
+  //   return;
+  // }
 
-// Submit information via AJAX
-$('#btn_save').click(function(){
-  var place   = $.trim($('#n_place').val());
-  var description = $.trim($('#n_description').val());
-  var lat = homeMarker.getPosition().lat();
-  var lng = homeMarker.getPosition().lng();
+  //  alert(example.text);
+  //API.saveExample(example).then(function() {
+  refreshExamples();
+
+  //});
+
+  //$exampleText.val("");
+  //$exampleDescription.val("");
+};
+
 
   $.post('save_place.php',
     {
